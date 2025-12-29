@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Madueke Gerald Chinemerem - Portfolio</title>
 
     <!-- Icons -->
@@ -18,8 +21,6 @@
     />
 
     <!-- Google Analytics GA4 Script -->
-    <!-- IMPORTANT: Replace 'G-XXXXXXXXXX' with your actual Measurement ID -->
-    <!-- Google tag (gtag.js) -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-4KCE5R87TN"
@@ -30,29 +31,40 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-4KCE5R87TN");
     </script>
 
     <style>
       :root {
+        /* Light Theme (Default) */
+        --bg-body: #f2f2f2;
+        --screen-bg: #ffffff;
+        --text-primary: #000000;
+        --text-secondary: #8e8e93;
+        --ios-blue: #007aff;
+        --ios-green: #32d74b; 
+        --ios-orange: #ff9500;
+        --ios-red: #ff3b30;
+        --ios-gray: #f2f2f7;
+        --separator: #c6c6c8;
+        --control-bg: rgba(255, 255, 255, 0.90);
+        
         --frame-width: 375px;
         --frame-height: 812px;
         --bezel-color: #1c1c1e;
-        --screen-bg: #000;
-        --text-white: #ffffff;
-        --text-gray: #8e8e93;
-        --ios-blue: #007aff;
-        --ios-red: #ff3b30;
-        --ios-green: #34c759;
-        --ios-orange: #ff9500;
-        --glass-bg: rgba(25, 25, 25, 0.4);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --anim-speed: 0.4s;
+        --text-white: #ffffff; 
+        --anim-speed: 0.3s;
+      }
 
-        /* Wallpapers */
-        --wallpaper-lock: url("https://picsum.photos/seed/gerald_lock/800/1600.jpg");
-        --wallpaper-home: url("https://picsum.photos/seed/gerald_home/800/1600.jpg");
+      /* Dark Theme Variables */
+      .dark-mode {
+        --bg-body: #000000;
+        --screen-bg: #000000;
+        --text-primary: #ffffff;
+        --text-secondary: #98989d;
+        --ios-gray: #1c1c1e;
+        --separator: #38383a;
+        --control-bg: rgba(30, 30, 30, 0.90);
       }
 
       * {
@@ -64,13 +76,14 @@
       body {
         margin: 0;
         padding: 0;
-        background-color: #f2f2f2;
+        background-color: var(--bg-body);
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
         overflow: hidden;
+        transition: background-color 0.3s;
       }
 
       /* --- Phone Frame --- */
@@ -83,7 +96,9 @@
           0 20px 50px rgba(0, 0, 0, 0.5);
         position: relative;
         overflow: hidden;
-        color: var(--text-white);
+        color: var(--text-primary);
+        touch-action: none;
+        transition: background-color 0.3s;
       }
 
       .notch {
@@ -98,7 +113,6 @@
         border-bottom-right-radius: 16px;
         z-index: 1000;
       }
-
       .notch::after {
         content: "";
         position: absolute;
@@ -109,7 +123,6 @@
         height: 10px;
         background: #1a1a1a;
         border-radius: 50%;
-        box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
       }
 
       .home-indicator {
@@ -119,11 +132,12 @@
         transform: translateX(-50%);
         width: 120px;
         height: 5px;
-        background: var(--text-white);
+        background: var(--text-primary);
         border-radius: 10px;
         z-index: 1000;
-        opacity: 0.8;
+        opacity: 0.5;
       }
+      .dark-mode .home-indicator { background: white; }
 
       .status-bar {
         position: absolute;
@@ -140,87 +154,8 @@
         mix-blend-mode: difference;
         color: white;
       }
-
-      .status-right {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-      }
-
-      .screen-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-      }
-
-      .screen {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transition: transform var(--anim-speed) cubic-bezier(0.2, 0.8, 0.2, 1),
-          opacity var(--anim-speed);
-        background-size: cover;
-        background-position: center;
-        overflow: hidden;
-      }
-
-      .hidden {
-        pointer-events: none;
-        opacity: 0;
-      }
-      .slide-up-active {
-        transform: translateY(-100%);
-      }
-
-      /* --- Lockscreen --- */
-      #lock-screen {
-        background-image: var(--wallpaper-lock);
-        z-index: 300;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .lock-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(2px);
-      }
-
-      .lock-content {
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 100px;
-        cursor: grab;
-      }
-
-      .clock-time {
-        font-size: 80px;
-        font-weight: 200;
-        line-height: 1;
-        margin-bottom: 5px;
-      }
-      .clock-date {
-        font-size: 20px;
-        font-weight: 500;
-      }
-
-      .charging-ui {
-        margin-top: 20px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        opacity: 0.9;
-      }
-
+      .status-right { display: flex; gap: 5px; align-items: center; }
+      
       .battery-icon {
         width: 24px;
         height: 12px;
@@ -242,46 +177,90 @@
       .battery-level {
         height: 100%;
         width: 100%;
-        background: var(--ios-green);
+        background: #32d74b; 
         border-radius: 2px;
       }
+      .battery-percent {
+        font-size: 14px;
+        margin-left: 4px;
+        color: white; 
+      }
 
+      /* Brightness Overlay */
+      #brightness-overlay {
+        position: absolute;
+        inset: 0;
+        background: black;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 100;
+        transition: opacity 0.1s;
+      }
+
+      .screen-container { width: 100%; height: 100%; position: relative; }
+      .screen {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        transition: transform var(--anim-speed) cubic-bezier(0.2, 0.8, 0.2, 1), opacity var(--anim-speed);
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+
+      /* --- Lockscreen --- */
+      #lock-screen {
+        background-image: url("https://picsum.photos/seed/gerald_lock/800/1600.jpg");
+        z-index: 300;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .lock-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(2px);
+      }
+      .lock-content {
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+      }
+      .clock-time {
+        font-size: 80px;
+        font-weight: 200;
+        line-height: 1;
+        margin-bottom: 5px;
+        color: white;
+      }
+      .clock-date { font-size: 20px; font-weight: 500; color: white; }
+      .charging-ui {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        opacity: 0.9;
+        color: white;
+      }
       .branding {
         margin-top: auto;
         margin-bottom: 50px;
         text-align: center;
         opacity: 0.6;
         animation: pulse 3s infinite ease-in-out;
+        color: white;
       }
-      .branding h1 {
-        font-size: 18px;
-        font-weight: 400;
-        margin: 0;
-      }
-      .branding p {
-        font-size: 12px;
-        font-weight: 300;
-        margin: 5px 0 0 0;
-        letter-spacing: 1px;
-      }
-
-      .swipe-bar-container {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-        z-index: 5;
-      }
-      .swipe-icon {
-        font-size: 24px;
-        opacity: 0.8;
-      }
-      .swipe-text {
-        font-size: 14px;
-        margin-top: 5px;
-        opacity: 0.8;
-        font-weight: 500;
-      }
-
+      .branding h1 { font-size: 18px; font-weight: 400; margin: 0; }
+      .branding p { font-size: 12px; font-weight: 300; margin: 5px 0 0 0; letter-spacing: 1px; }
+      .swipe-bar-container { width: 100%; text-align: center; margin-bottom: 20px; z-index: 5; }
+      .swipe-icon { font-size: 24px; opacity: 0.8; color: white; }
+      .swipe-text { font-size: 14px; margin-top: 5px; opacity: 0.8; font-weight: 500; color: white; }
       .lock-screen-notification {
         position: absolute;
         top: 50px;
@@ -300,9 +279,7 @@
         z-index: 10;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
-      .lock-screen-notification.visible {
-        transform: translateY(0);
-      }
+      .lock-screen-notification.visible { transform: translateY(0); }
 
       /* --- Passcode Screen --- */
       #passcode-screen {
@@ -317,22 +294,9 @@
         pointer-events: none;
         transform: translateY(100%);
       }
-      #passcode-screen.active {
-        opacity: 1;
-        pointer-events: all;
-        transform: translateY(0);
-      }
-
-      .passcode-text {
-        font-size: 24px;
-        margin-bottom: 40px;
-        font-weight: 400;
-      }
-      .dots-container {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 40px;
-      }
+      #passcode-screen.active { opacity: 1; pointer-events: all; transform: translateY(0); }
+      .passcode-text { font-size: 24px; margin-bottom: 40px; font-weight: 400; color: white; }
+      .dots-container { display: flex; gap: 20px; margin-bottom: 40px; }
       .dot {
         width: 12px;
         height: 12px;
@@ -340,10 +304,7 @@
         border: 1px solid white;
         transition: background 0.2s;
       }
-      .dot.filled {
-        background: white;
-      }
-
+      .dot.filled { background: white; }
       .keypad {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -361,45 +322,46 @@
         font-weight: 300;
         cursor: pointer;
         transition: background 0.2s;
+        color: white;
       }
-      .key:active {
-        background: rgba(255, 255, 255, 0.5);
-      }
-
-      .passcode-notification {
+      .key:active { background: rgba(255, 255, 255, 0.5); }
+      .passcode-hint-toast {
         position: absolute;
-        top: 60px;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 13px;
-        backdrop-filter: blur(10px);
+        bottom: 100px;
+        background: rgba(255, 255, 255, 0.9);
+        color: black;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
-      .shake {
-        animation: shake 0.5s;
-      }
+      .passcode-hint-toast.show { transform: scale(1); opacity: 1; }
+      .shake { animation: shake 0.5s; }
 
       /* --- Home Screen --- */
       #home-screen {
-        background-image: var(--wallpaper-home);
+        background-image: url("https://picsum.photos/seed/gerald_home/800/1600.jpg");
         z-index: 200;
         transform: scale(0.95);
         opacity: 0;
         pointer-events: none;
       }
-      #home-screen.active {
-        transform: scale(1);
-        opacity: 1;
-        pointer-events: all;
-      }
-
+      #home-screen.active { transform: scale(1); opacity: 1; pointer-events: all; }
       .app-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 25px 15px;
         padding: 60px 20px 100px 20px;
       }
-
       .app-icon-wrapper {
         display: flex;
         flex-direction: column;
@@ -420,39 +382,20 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         transition: transform 0.1s;
       }
-      .app-icon-wrapper:active .app-icon {
-        transform: scale(0.9);
-      }
+      .app-icon-wrapper:active .app-icon { transform: scale(0.9); }
       .app-name {
         font-size: 11px;
         color: white;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
         font-weight: 500;
       }
-
-      /* Specific Icon Colors */
-      .icon-gallery {
-        background: linear-gradient(135deg, #ff9966, #ff5e62);
-      }
-      .icon-about {
-        background: linear-gradient(135deg, #56ccf2, #2f80ed);
-      }
-      .icon-projects {
-        background: linear-gradient(135deg, #11998e, #38ef7d);
-      }
-      .icon-skills {
-        background: linear-gradient(135deg, #8e2de2, #4a00e0);
-      }
-      .icon-contact {
-        background: linear-gradient(135deg, #fce38a, #f38181);
-      }
-      .icon-settings {
-        background: linear-gradient(135deg, #bdc3c7, #2c3e50);
-      }
-      .icon-analytics {
-        background: linear-gradient(135deg, #f37335, #fdc830);
-      } /* NEW: Analytics Icon */
-
+      .icon-gallery { background: linear-gradient(135deg, #ff9966, #ff5e62); }
+      .icon-about { background: linear-gradient(135deg, #56ccf2, #2f80ed); }
+      .icon-projects { background: linear-gradient(135deg, #11998e, #38ef7d); }
+      .icon-skills { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
+      .icon-contact { background: linear-gradient(135deg, #fce38a, #f38181); }
+      .icon-settings { background: linear-gradient(135deg, #bdc3c7, #2c3e50); }
+      .icon-analytics { background: linear-gradient(135deg, #f37335, #fdc830); }
       .dock {
         position: absolute;
         bottom: 20px;
@@ -468,16 +411,158 @@
         padding: 0 10px;
       }
 
-      /* --- Apps Layer --- */
-      #app-layer {
+      /* --- Control Center (Neat & Responsive) --- */
+      #control-center {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: 500; 
+        background: transparent; 
+        transform: translateY(-100%); /* Hidden by default */
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        pointer-events: none; 
+      }
+      #control-center.open {
+        transform: translateY(0); /* Fixed at top when open */
+        pointer-events: auto;
+      }
+      .cc-sheet {
+        width: 100%;
+        max-height: 90vh; 
+        background: var(--control-bg);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-radius: 0 0 40px 40px; 
+        padding: 20px 15px 30px 15px; 
+        box-shadow: 0 -5px 30px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 20px; 
+        overflow-y: auto; 
+        overflow-x: hidden;
+      }
+      
+      /* CC Handle */
+      .cc-handle {
+        width: 40px;
+        height: 5px;
+        background: var(--text-secondary);
+        border-radius: 5px;
+        margin: 0 auto 15px auto;
+        opacity: 0.4;
+      }
+
+      /* CC Toggle Grid (2x2) */
+      .cc-toggle-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        width: 100%;
+      }
+
+      /* CC Modules */
+      .cc-module {
+        background: rgba(255, 255, 255, 0.15); 
+        border-radius: 16px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px; 
+        transition: background 0.2s, transform 0.1s;
+        cursor: pointer;
+      }
+      .dark-mode .cc-module {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .cc-module:active {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0.98);
+      }
+
+      /* CC Icons */
+      .cc-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: #fff;
+        margin-right: 12px;
+        flex-shrink: 0; 
+      }
+      .bg-blue { background: #007aff; }
+      .bg-green { background: #34c759; }
+      .bg-orange { background: #ff9500; }
+      .bg-red { background: #ff3b30; }
+      
+      .cc-label {
+        flex-grow: 1;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+      .cc-status { font-size: 13px; color: var(--text-secondary); }
+
+      /* CC Sliders */
+      .slider-group {
+        background: rgba(255, 255, 255, 0.1); 
+        padding: 12px 15px; 
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .dark-mode .slider-group { background: rgba(255, 255, 255, 0.05); }
+      .slider-icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        font-size: 20px;
+      }
+      input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        background: var(--text-secondary);
+        border-radius: 3px;
+        opacity: 0.3;
+      }
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        background: var(--text-primary);
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        margin-top: -9px; 
+      }
+      input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 6px;
+        cursor: pointer;
+        background: transparent;
+      }
+
+      /* --- Apps Layer --- */
+      #app-layer {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
         z-index: 400;
-        background: #f2f2f7;
-        color: #000;
+        background: var(--screen-bg);
+        color: var(--text-primary);
         transform: scale(0);
         opacity: 0;
         pointer-events: none;
@@ -485,25 +570,21 @@
         display: flex;
         flex-direction: column;
       }
-      #app-layer.open {
-        transform: scale(1);
-        opacity: 1;
-        pointer-events: all;
-      }
-
+      #app-layer.open { transform: scale(1); opacity: 1; pointer-events: all; }
       .app-header {
         height: 90px;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255,255,255,0.9);
         backdrop-filter: blur(10px);
         display: flex;
         align-items: flex-end;
         padding-bottom: 10px;
         padding-left: 20px;
         padding-right: 20px;
-        border-bottom: 1px solid #d1d1d6;
+        border-bottom: 1px solid var(--separator);
         position: relative;
         z-index: 10;
       }
+      .dark-mode .app-header { background: rgba(30, 30, 30, 0.9); }
       .back-btn {
         font-size: 16px;
         color: var(--ios-blue);
@@ -527,31 +608,45 @@
         overflow-y: auto;
         padding: 20px;
         padding-bottom: 40px;
+        background-color: var(--screen-bg);
       }
 
-      /* App Specific Styles */
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-      .gallery-item {
-        aspect-ratio: 1;
-        background: #ccc;
-        border-radius: 10px;
-        overflow: hidden;
-        position: relative;
+      /* --- App Specific Styles --- */
+      .contact-list { display: flex; flex-direction: column; gap: 1px; background: var(--separator); border-radius: 12px; overflow: hidden; }
+      .contact-item {
+        background: var(--screen-bg);
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
         cursor: pointer;
+        text-decoration: none !important;
+        color: var(--text-primary) !important;
+        transition: background 0.2s;
+        position: relative;
       }
-      .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s;
+      .contact-item:active { background: var(--ios-gray); }
+      .contact-item::after {
+        content: "\f054";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #c7c7cc;
+        margin-left: auto;
+        font-size: 14px;
       }
-      .gallery-item:hover img {
-        transform: scale(1.05);
+      .contact-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--ios-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ios-blue);
+        font-size: 16px;
+        flex-shrink: 0;
       }
+      .contact-text { font-size: 16px; font-weight: 500; word-break: break-all; }
 
       .notes-paper {
         background: #fffcf5;
@@ -562,181 +657,240 @@
         line-height: 1.5;
         box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
         color: #444;
+        border-radius: 12px;
       }
-      .notes-title {
-        font-weight: bold;
-        font-size: 22px;
-        margin-bottom: 15px;
-        text-align: center;
-      }
+      .dark-mode .notes-paper { background: #1c1c1e; color: #fff; }
 
       .project-card {
-        background: white;
+        background: var(--screen-bg); 
+        border: 1px solid var(--separator);
         border-radius: 12px;
         padding: 15px;
         margin-bottom: 15px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       }
-      .project-title {
-        font-weight: 600;
-        font-size: 16px;
-        margin-bottom: 5px;
-      }
-      .project-desc {
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 10px;
-      }
-      .project-tags {
-        display: flex;
-        gap: 5px;
-        flex-wrap: wrap;
-        margin-bottom: 10px;
-      }
-      .tag {
-        background: #e5e5ea;
-        color: #333;
-        font-size: 10px;
-        padding: 3px 8px;
-        border-radius: 4px;
-      }
-      .project-links {
-        display: flex;
-        gap: 15px;
-        font-size: 13px;
-        font-weight: 500;
-      }
-      .project-links a {
-        text-decoration: none;
-        color: var(--ios-blue);
-      }
+      .project-title { font-weight: 600; font-size: 16px; margin-bottom: 5px; color: var(--text-primary); }
+      .project-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+      .project-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+      .tag { background: var(--ios-gray); color: var(--text-primary); font-size: 10px; padding: 3px 8px; border-radius: 4px; }
+      .project-links { display: flex; gap: 15px; font-size: 13px; font-weight: 500; }
+      .project-links a { text-decoration: none; color: var(--ios-blue); }
 
-      .skill-item {
-        margin-bottom: 20px;
-        background: white;
-        padding: 15px;
-        border-radius: 12px;
-      }
-      .skill-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-        font-size: 14px;
-        font-weight: 600;
-      }
-      .progress-bg {
-        height: 6px;
-        background: #e5e5ea;
-        border-radius: 3px;
-        overflow: hidden;
-      }
-      .progress-fill {
-        height: 100%;
-        background: var(--ios-green);
-        border-radius: 3px;
-      }
+      .skill-item { margin-bottom: 20px; background: var(--screen-bg); padding: 15px; border-radius: 12px; }
+      .skill-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--text-primary); }
+      .progress-bg { height: 6px; background: var(--separator); border-radius: 3px; overflow: hidden; }
+      .progress-fill { height: 100%; background: var(--ios-green); border-radius: 3px; }
 
-      .contact-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .contact-item {
-        background: white;
-        padding: 15px;
-        margin-bottom: 1px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        cursor: pointer;
-        text-decoration: none;
-        color: #000;
-        transition: background 0.2s;
-      }
-      .contact-item:active {
-        background: #e5e5ea;
-      }
-      .contact-icon {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background: #eee;
+      .settings-section { margin-bottom: 30px; }
+      .settings-profile { display: flex; align-items: center; padding: 20px 0; margin-bottom: 20px; }
+      .settings-avatar { 
+        width: 80px; 
+        height: 80px; 
+        border-radius: 50%; 
+        overflow: hidden; 
+        margin-right: 20px; 
+        border: 2px solid var(--separator);
+        background: var(--ios-gray);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--ios-blue);
       }
+      .settings-avatar img { width: 100%; height: 100%; object-fit: cover; }
+      .settings-name { font-size: 22px; font-weight: 700; color: var(--text-primary); }
+      .settings-job { font-size: 14px; color: var(--text-secondary); }
+      
+      .settings-group { background: var(--screen-bg); border-radius: 12px; overflow: hidden; margin-bottom: 25px; border: 1px solid var(--separator); }
+      .settings-group-title { padding-left: 15px; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
+      .setting-row { padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--separator); }
+      .setting-row:last-child { border-bottom: none; }
+      .setting-label { font-size: 16px; color: var(--text-primary); }
+      .setting-action { color: var(--ios-blue); font-size: 15px; }
+      .danger-text { color: var(--ios-red); text-align: center; width: 100%; display: block;}
 
-      .settings-group {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 25px;
-      }
-      .setting-row {
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #e5e5ea;
+      .toggle-switch { position: relative; display: inline-block; width: 50px; height: 30px; }
+      .toggle-switch input { opacity: 0; width: 0; height: 0; }
+      .slider {
+        position: absolute;
         cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: var(--separator);
+        transition: .4s;
+        border-radius: 34px;
       }
-      .setting-row:last-child {
-        border-bottom: none;
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       }
-      .setting-label {
-        font-size: 16px;
+      input:checked + .slider { background-color: var(--ios-green); }
+      input:checked + .slider:before { transform: translateX(20px); }
+
+      /* Coming Soon Placeholder */
+      .coming-soon-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: var(--text-secondary);
+        text-align: center;
       }
-      .setting-action {
-        color: var(--ios-blue);
-        font-size: 15px;
+      .coming-soon-icon {
+        font-size: 50px;
+        margin-bottom: 20px;
+        opacity: 0.5;
       }
-      .danger-text {
-        color: var(--ios-red);
+      .coming-soon-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--text-primary);
       }
 
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 0.6;
-        }
-        50% {
-          opacity: 0.9;
-        }
-      }
+      @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.9; } }
       @keyframes shake {
-        0% {
-          transform: translateX(0);
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        50% { transform: translateX(10px); }
+        75% { transform: translateX(-10px); }
+        100% { transform: translateX(0); }
+      }
+
+      /* --- RESPONSIVE MEDIA QUERIES --- */
+      @media screen and (max-width: 450px), screen and (max-height: 850px) {
+        body { background-color: #000; }
+        .iphone-frame {
+          width: 100vw;
+          height: 100vh;
+          border-radius: 0;
+          border: none;
+          box-shadow: none;
+          top: 0;
+          left: 0;
+          transform: none;
+          margin: 0;
         }
-        25% {
-          transform: translateX(-10px);
-        }
-        50% {
-          transform: translateX(10px);
-        }
-        75% {
-          transform: translateX(-10px);
-        }
-        100% {
-          transform: translateX(0);
-        }
+        .notch { width: 140px; }
+        .app-grid { padding-top: 80px; gap: 20px 10px; }
+        .app-icon { width: 55px; height: 55px; }
+      }
+
+      @media screen and (max-height: 600px) {
+        /* Compact CC for landscape */
+        .cc-sheet { padding: 15px; border-radius: 0; }
+        .cc-handle { margin: 0 auto 5px auto; }
+        .cc-module { height: 60px; padding: 10px; }
+        .dock { display: none; }
+      }
+
+      @media screen and (max-width: 360px) {
+        /* Small width like iPhone SE */
+        .cc-toggle-grid { gap: 10px; }
+        .cc-module { height: 70px; padding: 10px; }
+        .cc-label { font-size: 14px; }
+        .clock-time { font-size: 65px; }
       }
     </style>
   </head>
   <body>
     <div class="iphone-frame">
       <div class="notch"></div>
+      <div id="brightness-overlay"></div>
+
       <div class="status-bar">
         <div class="time" id="status-time">12:00</div>
         <div class="status-right">
           <i class="fas fa-signal"></i>
-          <i class="fas fa-wifi"></i>
+          <i class="fas fa-wifi" id="sb-wifi"></i>
+          <i class="fab fa-bluetooth-b" id="sb-bluetooth" style="display:none;"></i> 
           <div class="battery-icon"><div class="battery-level"></div></div>
+          <div class="battery-percent">100%</div>
         </div>
       </div>
       <div class="home-indicator"></div>
 
       <div class="screen-container">
+        
+        <!-- Control Center (Neat & Fixed) -->
+        <div id="control-center">
+            <div class="cc-sheet">
+                <!-- Handle Bar -->
+                <div class="cc-handle"></div>
+
+                <!-- Row 1: Connectivity (Grid 2 cols) -->
+                <div class="cc-toggle-grid">
+                    <div class="cc-module bg-blue" onclick="toggleWiFi(this)">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fas fa-wifi cc-icon bg-blue"></i>
+                            <span class="cc-label">Wi-Fi</span>
+                        </div>
+                        <div class="cc-status">On</div>
+                    </div>
+                    <div class="cc-module bg-blue" onclick="toggleBluetooth(this)">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fab fa-bluetooth-b cc-icon bg-blue"></i>
+                            <span class="cc-label">Bluetooth</span>
+                        </div>
+                        <div class="cc-status">On</div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Toggles (Grid 2 cols) -->
+                <div class="cc-toggle-grid">
+                    <div class="cc-module bg-orange" onclick="toggleCCState(this, 'AirDrop')">
+                         <div style="display:flex; align-items:center;">
+                            <i class="fas fa-plane cc-icon bg-orange"></i>
+                            <span class="cc-label">AirDrop</span>
+                        </div>
+                        <div class="cc-status">Contacts</div>
+                    </div>
+                    <div class="cc-module bg-red" onclick="toggleCCState(this, 'Focus')">
+                         <div style="display:flex; align-items:center;">
+                            <i class="fas fa-moon cc-icon bg-red"></i>
+                            <span class="cc-label">Focus</span>
+                        </div>
+                        <div class="cc-status">Off</div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Sliders (Full Width) -->
+                <div class="slider-group">
+                    <i class="fas fa-sun slider-icon"></i>
+                    <input type="range" min="0" max="100" value="100" oninput="setBrightness(this.value)">
+                </div>
+                <div class="slider-group">
+                    <i class="fas fa-volume-up slider-icon"></i>
+                    <input type="range" min="0" max="100" value="50" oninput="showVolume(this.value)">
+                </div>
+
+                <!-- Row 4: Utilities (Grid 2 cols) -->
+                <div class="cc-toggle-grid">
+                    <!-- Dark Mode -->
+                    <div class="cc-module" onclick="triggerDarkModeToggle()">
+                         <div style="display:flex; align-items:center;">
+                            <i class="fas fa-moon cc-icon" style="background:#555;"></i>
+                            <span class="cc-label">Dark Mode</span>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:var(--text-secondary); font-size:12px;"></i>
+                    </div>
+                    <!-- Flashlight -->
+                    <div class="cc-module" onclick="toggleFlashlight(this)">
+                        <div style="display:flex; align-items:center;">
+                            <i class="fas fa-bolt cc-icon" id="flashlight-icon" style="background:#555;"></i>
+                            <span class="cc-label">Flashlight</span>
+                        </div>
+                        <div class="cc-status" id="flashlight-status">Off</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 1. Lock Screen -->
         <div id="lock-screen" class="screen">
           <div class="lock-overlay"></div>
@@ -769,7 +923,12 @@
         <!-- 2. Passcode Screen -->
         <div id="passcode-screen" class="screen">
           <div class="passcode-text">Enter Passcode</div>
-          <div class="passcode-notification">PIN: 123456</div>
+
+          <div class="passcode-hint-toast" id="passcode-hint">
+            <i class="fas fa-info-circle" style="color: var(--ios-blue)"></i>
+            Password is 123456
+          </div>
+
           <div class="dots-container" id="passcode-dots">
             <div class="dot"></div>
             <div class="dot"></div>
@@ -827,7 +986,6 @@
               </div>
               <div class="app-name">Contact</div>
             </div>
-            <!-- NEW: Analytics Icon -->
             <div class="app-icon-wrapper" onclick="openApp('analytics')">
               <div class="app-icon icon-analytics">
                 <i class="fas fa-chart-line"></i>
@@ -860,17 +1018,14 @@
 
     <script>
       /* --- ANALYTICS WRAPPER --- */
-      // Helper function to track "Screens" (Virtual Pageviews)
       function trackScreen(screenName) {
         if (typeof gtag === "function") {
-          gtag("config", "G-XXXXXXXXXX", {
+          gtag("config", "G-4KCE5R87TN", {
             page_path: screenName,
             send_page_view: true,
           });
         }
       }
-
-      // Helper function to track "Events" (Interactions)
       function trackEvent(category, action, label = null) {
         if (typeof gtag === "function") {
           gtag("event", action, {
@@ -886,6 +1041,11 @@
         screen: "lock",
         passcode: "",
         activeApp: null,
+        wifiOn: true,
+        bluetoothOn: true,
+        darkMode: false,
+        flashlightOn: false,
+        track: null
       };
 
       const correctPasscode = "123456";
@@ -895,6 +1055,7 @@
         passcode: document.getElementById("passcode-screen"),
         home: document.getElementById("home-screen"),
         app: document.getElementById("app-layer"),
+        control: document.getElementById("control-center")
       };
 
       const els = {
@@ -906,9 +1067,10 @@
         appTitle: document.getElementById("active-app-title"),
         appContent: document.getElementById("app-content-area"),
         lockContent: document.getElementById("lock-content-area"),
+        passcodeHint: document.getElementById("passcode-hint"),
+        brightnessOverlay: document.getElementById("brightness-overlay")
       };
 
-      // Initial Page Load View
       window.addEventListener("load", () => {
         trackScreen("/lockscreen");
       });
@@ -927,51 +1089,86 @@
       setInterval(updateClock, 1000);
       updateClock();
 
-      /* --- Lockscreen Swipe Logic --- */
+      /* --- Gesture Logic (Fixed CC Movement) --- */
       let startY = 0;
       let isDragging = false;
+      let activeSwipeTarget = null; 
 
       function handleStart(y) {
-        if (state.screen !== "lock") return;
+        if (state.screen === "app") return; 
+
         startY = y;
         isDragging = true;
+        activeSwipeTarget = null;
+
+        if (state.screen === "lock") {
+            activeSwipeTarget = "lock";
+        } else if (state.screen === "home") {
+            // Swipe down from top triggers CC
+            if (y < 60) activeSwipeTarget = "control";
+        }
       }
 
       function handleMove(y) {
-        if (!isDragging || state.screen !== "lock") return;
+        if (!isDragging || !activeSwipeTarget) return;
         const deltaY = startY - y;
-        if (deltaY > 0) {
-          screens.lock.style.transform = `translateY(-${deltaY}px)`;
-          els.lockContent.style.opacity = Math.max(0, 1 - deltaY / 400);
-        }
+
+        if (activeSwipeTarget === "lock") {
+            // Allow dragging lock screen only
+            if (deltaY > 0) {
+                screens.lock.style.transform = `translateY(-${deltaY}px)`;
+                els.lockContent.style.opacity = Math.max(0,1 - deltaY / 400);
+            }
+        } 
+        // REMOVED dragging logic for CC here as per request
+        // It will just snap open/closed in handleEnd
       }
 
       function handleEnd(y) {
-        if (!isDragging || state.screen !== "lock") return;
+        if (!isDragging || !activeSwipeTarget) return;
         const deltaY = startY - y;
         isDragging = false;
 
-        if (deltaY > 150) {
-          trackEvent("Interaction", "Swipe Unlock");
-          transitionToPasscode();
-        } else {
-          screens.lock.style.transform = "";
-          els.lockContent.style.opacity = "";
+        if (activeSwipeTarget === "lock") {
+            if (deltaY > 150) {
+                trackEvent("Interaction", "Swipe Unlock");
+                transitionToPasscode();
+            } else {
+                screens.lock.style.transform = "";
+                els.lockContent.style.opacity = "";
+            }
+        } else if (activeSwipeTarget === "control") {
+            // Snap Logic (No dragging physics)
+            if (deltaY < -80) { // Threshold to open
+                trackEvent("Interaction", "Swipe Down Control Center");
+                screens.control.classList.add("open");
+                state.screen = "control";
+            } else {
+                // If swipe wasn't long enough, do nothing
+            }
         }
+        activeSwipeTarget = null;
       }
 
-      document.addEventListener("touchstart", (e) =>
-        handleStart(e.touches[0].clientY)
-      );
-      document.addEventListener("touchmove", (e) =>
-        handleMove(e.touches[0].clientY)
-      );
-      document.addEventListener("touchend", (e) =>
-        handleEnd(e.changedTouches[0].clientY)
-      );
+      // Touch Listeners
+      document.addEventListener("touchstart", (e) => handleStart(e.touches[0].clientY));
+      document.addEventListener("touchmove", (e) => handleMove(e.touches[0].clientY));
+      document.addEventListener("touchend", (e) => handleEnd(e.changedTouches[0].clientY));
+
+      // Mouse Listeners
       document.addEventListener("mousedown", (e) => handleStart(e.clientY));
       document.addEventListener("mousemove", (e) => handleMove(e.clientY));
       document.addEventListener("mouseup", (e) => handleEnd(e.clientY));
+
+      // Click outside CC to close
+      screens.control.addEventListener("click", (e) => {
+          if(e.target === screens.control) {
+              screens.control.classList.remove("open");
+              state.screen = "home";
+              trackScreen("/home");
+          }
+      });
+
 
       /* --- Lockscreen Notification --- */
       function toggleToast() {
@@ -989,10 +1186,12 @@
         screens.lock.style.transition = "transform 0.5s ease-in, opacity 0.5s";
         screens.lock.style.transform = "translateY(-100%)";
         screens.lock.style.opacity = "0";
+
         setTimeout(() => {
           state.screen = "passcode";
           screens.passcode.classList.add("active");
           trackScreen("/passcode");
+          showPasscodeHint();
         }, 200);
       }
 
@@ -1011,6 +1210,7 @@
       function returnToLock() {
         closeApp(false);
         screens.home.classList.remove("active");
+        screens.control.classList.remove("open"); 
         screens.lock.style.transition = "transform 0.5s ease-out";
         screens.lock.style.transform = "translateY(0)";
         screens.lock.style.opacity = "1";
@@ -1021,22 +1221,24 @@
       }
 
       /* --- Passcode Logic --- */
+      function showPasscodeHint() {
+        els.passcodeHint.classList.add("show");
+        setTimeout(() => {
+          els.passcodeHint.classList.remove("show");
+        }, 3000);
+      }
       document.querySelectorAll(".key").forEach((key) => {
         key.addEventListener("click", (e) => {
           const num = e.currentTarget.dataset.num;
           if (num) enterPasscode(num);
         });
       });
-
-      document
-        .getElementById("passcode-delete")
-        .addEventListener("click", () => {
-          if (state.passcode.length > 0) {
-            state.passcode = state.passcode.slice(0, -1);
-            updateDots();
-          }
-        });
-
+      document.getElementById("passcode-delete").addEventListener("click", () => {
+        if (state.passcode.length > 0) {
+          state.passcode = state.passcode.slice(0, -1);
+          updateDots();
+        }
+      });
       function enterPasscode(num) {
         if (state.passcode.length < 6) {
           state.passcode += num;
@@ -1044,14 +1246,12 @@
           if (state.passcode.length === 6) checkPasscode();
         }
       }
-
       function updateDots() {
         Array.from(els.passcodeDots).forEach((dot, index) => {
           if (index < state.passcode.length) dot.classList.add("filled");
           else dot.classList.remove("filled");
         });
       }
-
       function checkPasscode() {
         if (state.passcode === correctPasscode) {
           trackEvent("Action", "Unlock Success");
@@ -1059,24 +1259,130 @@
         } else {
           trackEvent("Action", "Unlock Failed");
           document.getElementById("passcode-screen").classList.add("shake");
-          Array.from(els.passcodeDots).forEach(
-            (d) => (d.style.background = "var(--ios-red)")
-          );
+          Array.from(els.passcodeDots).forEach((d) => (d.style.background = "var(--ios-red)"));
           setTimeout(() => {
             resetPasscode();
-            document
-              .getElementById("passcode-screen")
-              .classList.remove("shake");
-            Array.from(els.passcodeDots).forEach(
-              (d) => (d.style.background = "")
-            );
+            document.getElementById("passcode-screen").classList.remove("shake");
+            Array.from(els.passcodeDots).forEach((d) => (d.style.background = ""));
+            showPasscodeHint();
           }, 500);
         }
       }
-
       function resetPasscode() {
         state.passcode = "";
         updateDots();
+      }
+
+      /* --- Control Center Functions --- */
+      
+      function toggleWiFi(btn) {
+          state.wifiOn = !state.wifiOn;
+          const icon = document.getElementById("sb-wifi");
+          const statusText = btn.querySelector(".cc-status");
+          
+          if(state.wifiOn) {
+              icon.style.display = "inline-block";
+              statusText.innerText = "On";
+              btn.style.opacity = "1";
+          } else {
+              icon.style.display = "none";
+              statusText.innerText = "Off";
+              btn.style.opacity = "0.5";
+          }
+      }
+
+      function toggleBluetooth(btn) {
+          state.bluetoothOn = !state.bluetoothOn;
+          const icon = document.getElementById("sb-bluetooth");
+          const statusText = btn.querySelector(".cc-status");
+
+          if(state.bluetoothOn) {
+              icon.style.display = "inline-block";
+              statusText.innerText = "On";
+              btn.style.opacity = "1";
+          } else {
+              icon.style.display = "none";
+              statusText.innerText = "Off";
+              btn.style.opacity = "0.5";
+          }
+      }
+
+      function setBrightness(val) {
+          // val 0 to 100. 
+          // We want overlay opacity 0 to 0.8 (max dim)
+          const opacity = (100 - val) / 150; 
+          els.brightnessOverlay.style.opacity = opacity;
+      }
+
+      function showVolume(val) {
+          // Volume visual feedback
+      }
+
+      function triggerDarkModeToggle() {
+          state.darkMode = !state.darkMode;
+          toggleDarkMode({ checked: state.darkMode });
+      }
+
+      // --- REAL FLASHLIGHT FUNCTIONALITY ---
+      async function toggleFlashlight(btn) {
+          state.flashlightOn = !state.flashlightOn;
+          const statusText = document.getElementById("flashlight-status");
+          const icon = document.getElementById("flashlight-icon");
+
+          if (state.flashlightOn) {
+              // Turn ON
+              try {
+                  if (!state.track) {
+                      // Request camera stream (Must be HTTPS!)
+                      const stream = await navigator.mediaDevices.getUserMedia({
+                          video: { facingMode: 'environment' }
+                      });
+                      state.track = stream.getVideoTracks()[0];
+                  }
+                  
+                  // Apply torch
+                  await state.track.applyConstraints({
+                      advanced: [{ torch: true }]
+                  });
+
+                  statusText.innerText = "On";
+                  icon.style.background = "white";
+                  icon.style.color = "orange";
+                  btn.style.opacity = "1";
+
+              } catch (err) {
+                  console.error(err);
+                  alert("Flashlight Error: Please ensure you are using HTTPS and have granted camera permissions.");
+                  // Fallback UI
+                  statusText.innerText = "Error";
+                  state.flashlightOn = false;
+              }
+          } else {
+              // Turn OFF
+              if (state.track) {
+                  await state.track.applyConstraints({
+                      advanced: [{ torch: false }]
+                  });
+                  // Optional: Stop track to save battery/turn off light sensor
+                  // state.track.stop(); state.track = null; 
+              }
+
+              statusText.innerText = "Off";
+              icon.style.background = "#555";
+              icon.style.color = "white";
+              btn.style.opacity = "1";
+          }
+      }
+
+      function toggleCCState(el, name) {
+          const statusText = el.querySelector(".cc-status");
+          if (statusText.innerText === "On") {
+              statusText.innerText = "Off";
+              el.style.opacity = "0.5";
+          } else {
+              statusText.innerText = "On";
+              el.style.opacity = "1";
+          }
       }
 
       /* --- App System --- */
@@ -1084,31 +1390,27 @@
         gallery: {
           title: "Certificates",
           render: () => `
-                    <div class="gallery-grid">
-                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert1/400/400.jpg"></div>
-                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert2/400/400.jpg"></div>
-                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert3/400/400.jpg"></div>
-                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert4/400/400.jpg"></div>
-                    </div>
-                `,
-          postRender: () => {
-            document
-              .querySelectorAll(".gallery-item")
-              .forEach((item, index) => {
-                item.addEventListener("click", () => {
-                  trackEvent(
-                    "Engagement",
-                    "View Certificate",
-                    `Image ${index + 1}`
-                  );
-                });
-              });
-          },
+            <div class="coming-soon-box">
+                <i class="fas fa-certificate coming-soon-icon"></i>
+                <div class="coming-soon-title">Coming Soon</div>
+            </div>
+          `,
         },
         about: {
           title: "About Me",
           render: () => `
                     <div class="notes-paper">
+                        <!-- PROFILE PICTURE SECTION -->
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <!-- REPLACE THIS URL WITH YOUR IMAGE -->
+                            <img src="images/profile.jpg" alt="Profile Picture"
+                                 style="width: 140px; height: 140px;
+                                        border-radius: 50%;
+                                        object-fit: cover;
+                                        border: 4px solid #fff;
+                                        box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                        </div>
+
                         <div class="notes-title">About Me</div>
                         <p>Hi, I am Madueke Gerald Chinemerem.</p>
                         <p>I am a passionate fullstack web developer and UI/UX enthusiast. I love building interactive web experiences that are not only functional but also visually stunning.</p>
@@ -1133,28 +1435,7 @@
                             <a href="#" class="ga-link" data-label="E-Commerce Live"><i class="fas fa-external-link-alt"></i> Demo</a>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-title">Task Manager App</div>
-                        <div class="project-desc">Productivity app with drag-and-drop features.</div>
-                        <div class="project-tags">
-                            <span class="tag">Vue.js</span><span class="tag">Firebase</span>
-                        </div>
-                         <div class="project-links">
-                            <a href="#" class="ga-link" data-label="Task Manager GitHub"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
                 `,
-          postRender: () => {
-            document.querySelectorAll(".ga-link").forEach((link) => {
-              link.addEventListener("click", (e) => {
-                trackEvent(
-                  "Outbound",
-                  "Click Link",
-                  e.target.closest("a").dataset.label
-                );
-              });
-            });
-          },
         },
         skills: {
           title: "Skills",
@@ -1180,52 +1461,98 @@
         contact: {
           title: "Contact",
           render: () => `
-                    <ul class="contact-list">
-                        <li class="contact-item ga-contact" data-type="Email">
+                    <div class="contact-list">
+                        <a href="mailto:madgerald2009@gmail.com" class="contact-item" target="_blank">
                             <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <span>gerald.madueke@example.com</span>
-                        </li>
-                        <li class="contact-item ga-contact" data-type="LinkedIn">
+                            <span class="contact-text">madgerald2009@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/madueke-gerald-a7037838b" class="contact-item" target="_blank">
                             <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                            <span>linkedin.com/in/gerald</span>
-                        </li>
-                        <li class="contact-item ga-contact" data-type="GitHub">
+                            <span class="contact-text">LinkedIn Profile</span>
+                        </a>
+                        <a href="https://github.com/Madgerald-09" class="contact-item" target="_blank">
                             <div class="contact-icon"><i class="fab fa-github"></i></div>
-                            <span>github.com/geralddev</span>
-                        </li>
-                        <li class="contact-item ga-contact" data-type="WhatsApp">
+                            <span class="contact-text">GitHub Profile</span>
+                        </a>
+                        <a href="https://wa.me/2349132600025" class="contact-item" target="_blank">
                             <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-                            <span>+1 234 567 890</span>
-                        </li>
-                    </ul>
+                            <span class="contact-text">Chat on WhatsApp</span>
+                        </a>
+                    </div>
                 `,
-          postRender: () => {
-            document.querySelectorAll(".ga-contact").forEach((item) => {
-              item.addEventListener("click", () => {
-                trackEvent("Contact", "Click", item.dataset.type);
-              });
-            });
-          },
         },
         settings: {
           title: "Settings",
           render: () => `
-                    <div class="settings-group">
-                        <div class="setting-row" onclick="toggleWallpaper()">
-                            <span class="setting-label">Change Wallpaper</span>
-                            <i class="fas fa-chevron-right" style="color:#ccc"></i>
-                        </div>
-                        <div class="setting-row">
-                            <span class="setting-label">Airplane Mode</span>
-                            <i class="fas fa-toggle-off" style="font-size: 30px; color: #ccc"></i>
-                        </div>
+            <div class="settings-section">
+                <!-- Profile Header -->
+                <div class="settings-profile">
+                    <!-- REPLACE THIS URL WITH YOUR IMAGE -->
+                    <div class="settings-avatar">
+                        <img src="images/profile.jpg" alt="Profile">
                     </div>
-                    <div class="settings-group">
-                        <div class="setting-row" style="justify-content: center">
-                            <span class="danger-text" onclick="returnToLock()">Reset Phone (Lock)</span>
-                        </div>
+                    <div>
+                        <div class="settings-name">Madueke Gerald</div>
+                        <div class="settings-job">Apple ID, iCloud, Media & Purchases</div>
                     </div>
-                `,
+                </div>
+
+                <!-- Connectivity -->
+                <div class="settings-group-title">CONNECTIVITY</div>
+                <div class="settings-group">
+                    <div class="setting-row">
+                        <span class="setting-label">Airplane Mode</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" onchange="toggleAirplane(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">Wi-Fi</span>
+                        <span class="setting-action">GeraldNet ></span>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">Bluetooth</span>
+                        <span class="setting-action">On ></span>
+                    </div>
+                </div>
+
+                <!-- Display -->
+                <div class="settings-group-title">DISPLAY & BRIGHTNESS</div>
+                <div class="settings-group">
+                    <div class="setting-row" onclick="toggleWallpaper()">
+                        <span class="setting-label">Wallpaper</span>
+                        <i class="fas fa-chevron-right" style="color:#ccc"></i>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-label">Dark Mode</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" onchange="toggleDarkMode(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                 <!-- Privacy -->
+                 <div class="settings-group-title">PRIVACY & SECURITY</div>
+                 <div class="settings-group">
+                     <div class="setting-row">
+                         <span class="setting-label">Location Services</span>
+                         <label class="toggle-switch">
+                             <input type="checkbox" checked>
+                             <span class="slider"></span>
+                         </label>
+                     </div>
+                 </div>
+
+                <!-- General / Reset -->
+                <div class="settings-group">
+                    <div class="setting-row" style="justify-content: center; border-bottom: none;">
+                        <span class="danger-text" onclick="returnToLock()">Reset Phone (Lock)</span>
+                    </div>
+                </div>
+            </div>
+          `,
         },
         analytics: {
           title: "Analytics",
@@ -1236,7 +1563,7 @@
                             <i class="fas fa-chart-line" style="font-size: 50px; color: var(--ios-blue);"></i>
                         </p>
                         <p style="text-align: center; color: #666;">Real data is hidden for privacy.</p>
-                        <p style="text-align: center; font-size: 12px; color: #999;">Visit the dashboard to view stats.</p>
+                        <p style="text-align: center; font-size: 12px; color: #999;">Visit dashboard to view stats.</p>
                     </div>
                 `,
         },
@@ -1253,7 +1580,6 @@
         els.appTitle.innerText = app.title;
         els.appContent.innerHTML = app.render();
 
-        if (app.postRender) app.postRender();
         screens.app.classList.add("open");
       }
 
@@ -1279,6 +1605,37 @@
         document.getElementById("home-screen").style.backgroundImage =
           wallpapers[wallpaperIndex];
       }
+
+      function toggleDarkMode(checkbox) {
+        const isChecked = checkbox.checked;
+        state.darkMode = isChecked;
+        
+        if (isChecked) {
+            document.body.classList.add("dark-mode");
+            document.querySelector(".iphone-frame").classList.add("dark-mode");
+        } else {
+            document.body.classList.remove("dark-mode");
+            document.querySelector(".iphone-frame").classList.remove("dark-mode");
+        }
+      }
+
+      function toggleAirplane(checkbox) {
+          const statusIcons = document.querySelectorAll(".fa-signal, .fa-wifi");
+          statusIcons.forEach(icon => {
+              icon.style.display = checkbox.checked ? "none" : "inline-block";
+          });
+          if(checkbox.checked) {
+              if(!document.querySelector(".fa-plane-status")) {
+                 const wifiContainer = document.querySelector(".status-right");
+                 const plane = document.createElement("i");
+                 plane.className = "fas fa-plane fa-plane-status";
+                 wifiContainer.prepend(plane);
+              }
+          } else {
+              document.querySelector(".fa-plane-status")?.remove();
+          }
+      }
+
     </script>
   </body>
 </html>
