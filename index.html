@@ -42,7 +42,7 @@
         --text-primary: #000000;
         --text-secondary: #8e8e93;
         --ios-blue: #007aff;
-        --ios-green: #32d74b; 
+        --ios-green: #32d74b;
         --ios-orange: #ff9500;
         --ios-red: #ff3b30;
         --ios-gray: #f2f2f7;
@@ -446,8 +446,6 @@
         overflow-y: auto; 
         overflow-x: hidden;
       }
-      
-      /* CC Handle */
       .cc-handle {
         width: 40px;
         height: 5px;
@@ -456,104 +454,48 @@
         margin: 0 auto 15px auto;
         opacity: 0.4;
       }
-
-      /* CC Toggle Grid (2x2) */
-      .cc-toggle-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        width: 100%;
-      }
-
-      /* CC Modules */
+      .cc-toggle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; }
       .cc-module {
-        background: rgba(255, 255, 255, 0.15); 
+        background: rgba(255, 255, 255, 0.15);
         border-radius: 16px;
         padding: 15px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 80px; 
+        height: 80px;
         transition: background 0.2s, transform 0.1s;
         cursor: pointer;
       }
-      .dark-mode .cc-module {
-        background: rgba(255, 255, 255, 0.1);
-      }
-      .cc-module:active {
-        background: rgba(255, 255, 255, 0.3);
-        transform: scale(0.98);
-      }
-
-      /* CC Icons */
+      .dark-mode .cc-module { background: rgba(255, 255, 255, 0.1); }
+      .cc-module:active { background: rgba(255, 255, 255, 0.3); transform: scale(0.98); }
       .cc-icon {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        color: #fff;
-        margin-right: 12px;
-        flex-shrink: 0; 
+        width: 30px; height: 30px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 16px; color: #fff; margin-right: 12px; flex-shrink: 0;
       }
-      .bg-blue { background: #007aff; }
-      .bg-green { background: #34c759; }
-      .bg-orange { background: #ff9500; }
-      .bg-red { background: #ff3b30; }
-      
-      .cc-label {
-        flex-grow: 1;
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--text-primary);
-      }
+      .bg-blue { background: #007aff; } .bg-green { background: #34c759; }
+      .bg-orange { background: #ff9500; } .bg-red { background: #ff3b30; }
+      .cc-label { flex-grow: 1; font-size: 15px; font-weight: 600; color: var(--text-primary); }
       .cc-status { font-size: 13px; color: var(--text-secondary); }
-
-      /* CC Sliders */
       .slider-group {
-        background: rgba(255, 255, 255, 0.1); 
-        padding: 12px 15px; 
+        background: rgba(255, 255, 255, 0.1);
+        padding: 12px 15px;
         border-radius: 16px;
         display: flex;
         align-items: center;
         gap: 15px;
       }
       .dark-mode .slider-group { background: rgba(255, 255, 255, 0.05); }
-      .slider-icon {
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-primary);
-        font-size: 20px;
-      }
+      .slider-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; }
       input[type=range] {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 6px;
-        background: var(--text-secondary);
-        border-radius: 3px;
-        opacity: 0.3;
+        -webkit-appearance: none; width: 100%; height: 6px;
+        background: var(--text-secondary); border-radius: 3px; opacity: 0.3;
       }
       input[type=range]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 24px;
-        width: 24px;
-        border-radius: 50%;
-        background: var(--text-primary);
-        cursor: pointer;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        margin-top: -9px; 
+        -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%;
+        background: var(--text-primary); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); margin-top: -9px; 
       }
-      input[type=range]::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 6px;
-        cursor: pointer;
-        background: transparent;
-      }
+      input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: transparent; }
 
       /* --- Apps Layer --- */
       #app-layer {
@@ -580,7 +522,7 @@
         padding-bottom: 10px;
         padding-left: 20px;
         padding-right: 20px;
-        border-bottom: 1px solid var(--separator);
+        border-bottom:1px solid var(--separator);
         position: relative;
         z-index: 10;
       }
@@ -611,7 +553,173 @@
         background-color: var(--screen-bg);
       }
 
-      /* --- App Specific Styles --- */
+      /* =========================================
+         IMPROVED: ABOUT ME APP STYLES
+         ========================================= */
+      .about-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 20px;
+      }
+
+      /* Profile Header */
+      .about-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 25px;
+        width: 100%;
+      }
+
+      .about-avatar-wrapper {
+        position: relative;
+        margin-bottom: 15px;
+      }
+      
+      .about-avatar {
+        width: 28vw; /* Responsive width */
+        max-width: 110px;
+        min-width: 80px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--screen-bg);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        background-color: #ddd;
+      }
+
+      .about-name {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+        text-align: center;
+      }
+
+      .about-role {
+        font-size: 15px;
+        color: var(--text-secondary);
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      /* Quick Actions Row */
+      .about-actions {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 25px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .action-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .action-btn:active { opacity: 0.6; }
+
+      .action-icon-circle {
+        width: 14vw;
+        max-width: 55px;
+        min-width: 40px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      }
+      
+      .action-label { font-size: 10px; font-weight: 500; color: var(--ios-blue); }
+
+      .bg-blue-gradient { background: linear-gradient(135deg, #007aff, #005ecb); }
+      .bg-green-gradient { background: linear-gradient(135deg, #32d74b, #248a3d); }
+      .bg-orange-gradient { background: linear-gradient(135deg, #ff9500, #cc7700); }
+
+      /* Info Cards (Native List Style) */
+      .about-section-title {
+        padding: 0 15px 8px 15px;
+        font-size: 13px;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .about-card {
+        background: var(--ios-gray);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+      .dark-mode .about-card { background: #1c1c1e; }
+
+      .about-list-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        border-bottom: 0.5px solid var(--separator);
+        background: var(--screen-bg);
+        transition: background 0.2s;
+      }
+      .about-list-item:last-child { border-bottom: none; }
+      .about-list-item:active { background: #e5e5ea; }
+      .dark-mode .about-list-item:active { background: #2c2c2e; }
+
+      .item-icon {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--ios-blue);
+        margin-right: 15px;
+      }
+
+      .item-content { flex: 1; }
+      
+      .item-label {
+        font-size: 16px;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+        font-weight: 400;
+      }
+      
+      .item-sublabel {
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+
+      .item-action {
+        color: var(--text-secondary);
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Biography Text Block */
+      .about-bio {
+        padding: 16px;
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--text-primary);
+        text-align: center;
+      }
+
+      /* =========================================
+         END ABOUT ME STYLES
+         ========================================= */
+
+      /* --- Other App Specific Styles --- */
       .contact-list { display: flex; flex-direction: column; gap: 1px; background: var(--separator); border-radius: 12px; overflow: hidden; }
       .contact-item {
         background: var(--screen-bg);
@@ -635,16 +743,10 @@
         font-size: 14px;
       }
       .contact-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
+        width: 32px; height: 32px; border-radius: 50%;
         background: var(--ios-gray);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--ios-blue);
-        font-size: 16px;
-        flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--ios-blue); font-size: 16px; flex-shrink: 0;
       }
       .contact-text { font-size: 16px; font-weight: 500; word-break: break-all; }
 
@@ -658,6 +760,12 @@
         box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
         color: #444;
         border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100%;
       }
       .dark-mode .notes-paper { background: #1c1c1e; color: #fff; }
 
@@ -681,20 +789,27 @@
       .progress-fill { height: 100%; background: var(--ios-green); border-radius: 3px; }
 
       .settings-section { margin-bottom: 30px; }
-      .settings-profile { display: flex; align-items: center; padding: 20px 0; margin-bottom: 20px; }
+      .settings-profile { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        padding: 20px 0; 
+        margin-bottom: 20px; 
+        flex-direction: column; 
+      }
       .settings-avatar { 
-        width: 80px; 
-        height: 80px; 
+        width: 100px; 
+        height: 100px; 
         border-radius: 50%; 
         overflow: hidden; 
-        margin-right: 20px; 
         border: 2px solid var(--separator);
         background: var(--ios-gray);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-shrink: 0; 
+        margin-bottom: 15px; 
       }
       .settings-avatar img { width: 100%; height: 100%; object-fit: cover; }
+      
+      .settings-info { text-align: center; }
       .settings-name { font-size: 22px; font-weight: 700; color: var(--text-primary); }
       .settings-job { font-size: 14px; color: var(--text-secondary); }
       
@@ -731,7 +846,6 @@
       input:checked + .slider { background-color: var(--ios-green); }
       input:checked + .slider:before { transform: translateX(20px); }
 
-      /* Coming Soon Placeholder */
       .coming-soon-box {
         display: flex;
         flex-direction: column;
@@ -741,17 +855,8 @@
         color: var(--text-secondary);
         text-align: center;
       }
-      .coming-soon-icon {
-        font-size: 50px;
-        margin-bottom: 20px;
-        opacity: 0.5;
-      }
-      .coming-soon-title {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--text-primary);
-      }
+      .coming-soon-icon { font-size: 50px; margin-bottom: 20px; opacity: 0.5; }
+      .coming-soon-title { font-size: 24px; font-weight: 600; margin-bottom: 10px; color: var(--text-primary); }
 
       @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.9; } }
       @keyframes shake {
@@ -766,35 +871,42 @@
       @media screen and (max-width: 450px), screen and (max-height: 850px) {
         body { background-color: #000; }
         .iphone-frame {
-          width: 100vw;
-          height: 100vh;
-          border-radius: 0;
-          border: none;
-          box-shadow: none;
-          top: 0;
-          left: 0;
-          transform: none;
-          margin: 0;
+          width: 100vw; height: 100vh; border-radius: 0; border: none;
+          box-shadow: none; top: 0; left: 0; transform: none; margin: 0;
         }
         .notch { width: 140px; }
         .app-grid { padding-top: 80px; gap: 20px 10px; }
         .app-icon { width: 55px; height: 55px; }
+        
+        /* About Me Adjustments */
+        .about-avatar { width: 30vw; }
+        .about-name { font-size: 20px; }
+        .action-label { font-size: 9px; }
       }
 
       @media screen and (max-height: 600px) {
-        /* Compact CC for landscape */
-        .cc-sheet { padding: 15px; border-radius: 0; }
-        .cc-handle { margin: 0 auto 5px auto; }
-        .cc-module { height: 60px; padding: 10px; }
+        .clock-time { font-size: 50px; margin-top: -20px; }
+        .lock-content { padding-top: 60px; }
         .dock { display: none; }
+        
+        .settings-profile { padding: 10px 0; margin-bottom: 10px; flex-direction: row; gap: 20px; justify-content: flex-start; }
+        .settings-avatar { width: 60px; height: 60px; margin-bottom: 0; margin-right: 0; }
+        .settings-info { text-align: left; }
       }
 
       @media screen and (max-width: 360px) {
-        /* Small width like iPhone SE */
-        .cc-toggle-grid { gap: 10px; }
-        .cc-module { height: 70px; padding: 10px; }
-        .cc-label { font-size: 14px; }
+        .app-grid { gap: 15px 5px; }
+        .app-icon { width: 50px; height: 50px; }
         .clock-time { font-size: 65px; }
+        
+        .cc-toggle-grid { gap: 5px; }
+        .cc-module { height: 65px; padding: 8px; }
+        .about-avatar { width: 35vw; }
+        .about-actions { gap: 15px; }
+      }
+
+      @media screen and (min-width: 768px) {
+        .iphone-frame { transform: scale(1.2); } 
       }
     </style>
   </head>
@@ -820,10 +932,7 @@
         <!-- Control Center (Neat & Fixed) -->
         <div id="control-center">
             <div class="cc-sheet">
-                <!-- Handle Bar -->
                 <div class="cc-handle"></div>
-
-                <!-- Row 1: Connectivity (Grid 2 cols) -->
                 <div class="cc-toggle-grid">
                     <div class="cc-module bg-blue" onclick="toggleWiFi(this)">
                         <div style="display:flex; align-items:center;">
@@ -840,8 +949,6 @@
                         <div class="cc-status">On</div>
                     </div>
                 </div>
-
-                <!-- Row 2: Toggles (Grid 2 cols) -->
                 <div class="cc-toggle-grid">
                     <div class="cc-module bg-orange" onclick="toggleCCState(this, 'AirDrop')">
                          <div style="display:flex; align-items:center;">
@@ -858,8 +965,6 @@
                         <div class="cc-status">Off</div>
                     </div>
                 </div>
-
-                <!-- Row 3: Sliders (Full Width) -->
                 <div class="slider-group">
                     <i class="fas fa-sun slider-icon"></i>
                     <input type="range" min="0" max="100" value="100" oninput="setBrightness(this.value)">
@@ -868,10 +973,7 @@
                     <i class="fas fa-volume-up slider-icon"></i>
                     <input type="range" min="0" max="100" value="50" oninput="showVolume(this.value)">
                 </div>
-
-                <!-- Row 4: Utilities (Grid 2 cols) -->
                 <div class="cc-toggle-grid">
-                    <!-- Dark Mode -->
                     <div class="cc-module" onclick="triggerDarkModeToggle()">
                          <div style="display:flex; align-items:center;">
                             <i class="fas fa-moon cc-icon" style="background:#555;"></i>
@@ -879,7 +981,6 @@
                         </div>
                         <i class="fas fa-chevron-right" style="color:var(--text-secondary); font-size:12px;"></i>
                     </div>
-                    <!-- Flashlight -->
                     <div class="cc-module" onclick="toggleFlashlight(this)">
                         <div style="display:flex; align-items:center;">
                             <i class="fas fa-bolt cc-icon" id="flashlight-icon" style="background:#555;"></i>
@@ -1089,7 +1190,7 @@
       setInterval(updateClock, 1000);
       updateClock();
 
-      /* --- Gesture Logic (Fixed CC Movement) --- */
+      /* --- Gesture Logic --- */
       let startY = 0;
       let isDragging = false;
       let activeSwipeTarget = null; 
@@ -1104,7 +1205,6 @@
         if (state.screen === "lock") {
             activeSwipeTarget = "lock";
         } else if (state.screen === "home") {
-            // Swipe down from top triggers CC
             if (y < 60) activeSwipeTarget = "control";
         }
       }
@@ -1114,14 +1214,11 @@
         const deltaY = startY - y;
 
         if (activeSwipeTarget === "lock") {
-            // Allow dragging lock screen only
             if (deltaY > 0) {
                 screens.lock.style.transform = `translateY(-${deltaY}px)`;
-                els.lockContent.style.opacity = Math.max(0,1 - deltaY / 400);
+                els.lockContent.style.opacity = Math.max(0, 1 - deltaY / 400);
             }
         } 
-        // REMOVED dragging logic for CC here as per request
-        // It will just snap open/closed in handleEnd
       }
 
       function handleEnd(y) {
@@ -1138,29 +1235,23 @@
                 els.lockContent.style.opacity = "";
             }
         } else if (activeSwipeTarget === "control") {
-            // Snap Logic (No dragging physics)
-            if (deltaY < -80) { // Threshold to open
+            if (deltaY < -80) { 
                 trackEvent("Interaction", "Swipe Down Control Center");
                 screens.control.classList.add("open");
                 state.screen = "control";
-            } else {
-                // If swipe wasn't long enough, do nothing
-            }
+            } 
         }
         activeSwipeTarget = null;
       }
 
-      // Touch Listeners
       document.addEventListener("touchstart", (e) => handleStart(e.touches[0].clientY));
       document.addEventListener("touchmove", (e) => handleMove(e.touches[0].clientY));
       document.addEventListener("touchend", (e) => handleEnd(e.changedTouches[0].clientY));
 
-      // Mouse Listeners
       document.addEventListener("mousedown", (e) => handleStart(e.clientY));
       document.addEventListener("mousemove", (e) => handleMove(e.clientY));
       document.addEventListener("mouseup", (e) => handleEnd(e.clientY));
 
-      // Click outside CC to close
       screens.control.addEventListener("click", (e) => {
           if(e.target === screens.control) {
               screens.control.classList.remove("open");
@@ -1308,65 +1399,45 @@
       }
 
       function setBrightness(val) {
-          // val 0 to 100. 
-          // We want overlay opacity 0 to 0.8 (max dim)
           const opacity = (100 - val) / 150; 
           els.brightnessOverlay.style.opacity = opacity;
       }
 
-      function showVolume(val) {
-          // Volume visual feedback
-      }
+      function showVolume(val) { }
 
       function triggerDarkModeToggle() {
           state.darkMode = !state.darkMode;
           toggleDarkMode({ checked: state.darkMode });
       }
 
-      // --- REAL FLASHLIGHT FUNCTIONALITY ---
       async function toggleFlashlight(btn) {
           state.flashlightOn = !state.flashlightOn;
           const statusText = document.getElementById("flashlight-status");
           const icon = document.getElementById("flashlight-icon");
 
           if (state.flashlightOn) {
-              // Turn ON
               try {
                   if (!state.track) {
-                      // Request camera stream (Must be HTTPS!)
                       const stream = await navigator.mediaDevices.getUserMedia({
                           video: { facingMode: 'environment' }
                       });
                       state.track = stream.getVideoTracks()[0];
                   }
-                  
-                  // Apply torch
-                  await state.track.applyConstraints({
-                      advanced: [{ torch: true }]
-                  });
-
+                  await state.track.applyConstraints({ advanced: [{ torch: true }] });
                   statusText.innerText = "On";
                   icon.style.background = "white";
                   icon.style.color = "orange";
                   btn.style.opacity = "1";
-
               } catch (err) {
                   console.error(err);
-                  alert("Flashlight Error: Please ensure you are using HTTPS and have granted camera permissions.");
-                  // Fallback UI
+                  alert("Flashlight Error: Please ensure you are using HTTPS.");
                   statusText.innerText = "Error";
                   state.flashlightOn = false;
               }
           } else {
-              // Turn OFF
               if (state.track) {
-                  await state.track.applyConstraints({
-                      advanced: [{ torch: false }]
-                  });
-                  // Optional: Stop track to save battery/turn off light sensor
-                  // state.track.stop(); state.track = null; 
+                  await state.track.applyConstraints({ advanced: [{ torch: false }] });
               }
-
               statusText.innerText = "Off";
               icon.style.background = "#555";
               icon.style.color = "white";
@@ -1399,105 +1470,151 @@
         about: {
           title: "About Me",
           render: () => `
-                    <div class="notes-paper">
-                        <!-- PROFILE PICTURE SECTION -->
-                        <div style="text-align: center; margin-bottom: 25px;">
-                            <!-- REPLACE THIS URL WITH YOUR IMAGE -->
-                            <img src="images/profile.jpg" alt="Profile Picture"
-                                 style="width: 140px; height: 140px;
-                                        border-radius: 50%;
-                                        object-fit: cover;
-                                        border: 4px solid #fff;
-                                        box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
-                        </div>
-
-                        <div class="notes-title">About Me</div>
-                        <p>Hi, I am Madueke Gerald Chinemerem.</p>
-                        <p>I am a passionate fullstack web developer and UI/UX enthusiast. I love building interactive web experiences that are not only functional but also visually stunning.</p>
-                        <br>
-                        <p><strong>Education:</strong><br>University of Nigeria Nsukka<br>Mechatronics Engineering</p>
-                        <br>
-                        <p><strong>Interests:</strong><br>Coding, Design, Music, Tech Innovation, Gaming, Anime.</p>
+            <div class="about-container">
+                <div class="about-header">
+                    <div class="about-avatar-wrapper">
+                        <!-- Responsive Profile Image -->
+                        <img src="images/profile.jpg" alt="Madueke Gerald" class="about-avatar">
                     </div>
-                `,
+                    <div class="about-name">Madueke Gerald</div>
+                    <div class="about-role">Fullstack Developer</div>
+                    
+                    <!-- Quick Action Buttons -->
+                    <div class="about-actions">
+                        <a href="mailto:madgerald2009@gmail.com" class="action-btn" onclick="trackEvent('About', 'Click', 'Email')">
+                            <div class="action-icon-circle bg-blue-gradient">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span class="action-label">Email</span>
+                        </a>
+                        <a href="https://wa.me/2349132600025" target="_blank" class="action-btn" onclick="trackEvent('About', 'Click', 'WhatsApp')">
+                            <div class="action-icon-circle bg-green-gradient">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span class="action-label">Chat</span>
+                        </a>
+                        <a href="tel:+2349132600025" class="action-btn" onclick="trackEvent('About', 'Click', 'Call')">
+                            <div class="action-icon-circle bg-orange-gradient">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <span class="action-label">Call</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Info Card: Bio -->
+                <div class="about-section-title">BIO</div>
+                <div class="about-card">
+                    <div class="about-list-item">
+                        <div class="item-content about-bio">
+                            Hi, I am Madueke Gerald Chinemerem. A passionate fullstack web developer and UI/UX enthusiast. I love building interactive web experiences that are functional and visually stunning.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Card: Personal Details -->
+                <div class="about-section-title">PERSONAL INFO</div>
+                <div class="about-card">
+                    <div class="about-list-item">
+                        <div class="item-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="item-content">
+                            <div class="item-label">Education</div>
+                            <div class="item-sublabel">Mechatronics Engineering</div>
+                        </div>
+                        <div class="item-sublabel">UNN</div>
+                    </div>
+                    <div class="about-list-item">
+                        <div class="item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="item-content">
+                            <div class="item-label">Location</div>
+                            <div class="item-sublabel">Nigeria</div>
+                        </div>
+                    </div>
+                    <div class="about-list-item">
+                        <div class="item-icon"><i class="fas fa-heart"></i></div>
+                        <div class="item-content">
+                            <div class="item-label">Interests</div>
+                            <div class="item-sublabel">Coding, Design, Music, Gaming</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          `,
         },
         projects: {
           title: "Projects",
           render: () => `
-                    <div class="project-card">
-                        <div class="project-title">E-Commerce Platform</div>
-                        <div class="project-desc">A full-stack shopping platform with payment integration.</div>
-                        <div class="project-tags">
-                            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Stripe</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="ga-link" data-label="E-Commerce GitHub"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" class="ga-link" data-label="E-Commerce Live"><i class="fas fa-external-link-alt"></i> Demo</a>
-                        </div>
-                    </div>
-                `,
+            <div class="project-card">
+                <div class="project-title">E-Commerce Platform</div>
+                <div class="project-desc">A full-stack shopping platform with payment integration.</div>
+                <div class="project-tags">
+                    <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Stripe</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="ga-link" data-label="E-Commerce GitHub"><i class="fab fa-github"></i> Code</a>
+                    <a href="#" class="ga-link" data-label="E-Commerce Live"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+          `,
         },
         skills: {
           title: "Skills",
           render: () => `
-                    <div class="skill-item">
-                        <div class="skill-header"><span>HTML/CSS</span><span>95%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width:95%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>JavaScript</span><span>90%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width:90%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>React/Vue</span><span>85%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width:85%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>UI Design</span><span>80%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width:80%"></div></div>
-                    </div>
-                `,
+            <div class="skill-item">
+                <div class="skill-header"><span>HTML/CSS</span><span>95%</span></div>
+                <div class="progress-bg"><div class="progress-fill" style="width:95%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header"><span>Python</span><span>90%</span></div>
+                <div class="progress-bg"><div class="progress-fill" style="width:90%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header"><span>React/Vue</span><span>85%</span></div>
+                <div class="progress-bg"><div class="progress-fill" style="width:85%"></div></div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-header"><span>UI Design</span><span>80%</span></div>
+                <div class="progress-bg"><div class="progress-fill" style="width:80%"></div></div>
+            </div>
+          `,
         },
         contact: {
           title: "Contact",
           render: () => `
-                    <div class="contact-list">
-                        <a href="mailto:madgerald2009@gmail.com" class="contact-item" target="_blank">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <span class="contact-text">madgerald2009@gmail.com</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/madueke-gerald-a7037838b" class="contact-item" target="_blank">
-                            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                            <span class="contact-text">LinkedIn Profile</span>
-                        </a>
-                        <a href="https://github.com/Madgerald-09" class="contact-item" target="_blank">
-                            <div class="contact-icon"><i class="fab fa-github"></i></div>
-                            <span class="contact-text">GitHub Profile</span>
-                        </a>
-                        <a href="https://wa.me/2349132600025" class="contact-item" target="_blank">
-                            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-                            <span class="contact-text">Chat on WhatsApp</span>
-                        </a>
-                    </div>
-                `,
+            <div class="contact-list">
+                <a href="mailto:madgerald2009@gmail.com" class="contact-item" target="_blank">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <span class="contact-text">madgerald2009@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/madueke-gerald-a7037838b" class="contact-item" target="_blank">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <span class="contact-text">LinkedIn Profile</span>
+                </a>
+                <a href="https://github.com/Madgerald-09" class="contact-item" target="_blank">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <span class="contact-text">GitHub Profile</span>
+                </a>
+                <a href="https://wa.me/2349132600025" class="contact-item" target="_blank">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <span class="contact-text">Chat on WhatsApp</span>
+                </a>
+            </div>
+          `,
         },
         settings: {
           title: "Settings",
           render: () => `
             <div class="settings-section">
-                <!-- Profile Header -->
                 <div class="settings-profile">
-                    <!-- REPLACE THIS URL WITH YOUR IMAGE -->
                     <div class="settings-avatar">
                         <img src="images/profile.jpg" alt="Profile">
                     </div>
-                    <div>
+                    <div class="settings-info">
                         <div class="settings-name">Madueke Gerald</div>
                         <div class="settings-job">Apple ID, iCloud, Media & Purchases</div>
                     </div>
                 </div>
 
-                <!-- Connectivity -->
                 <div class="settings-group-title">CONNECTIVITY</div>
                 <div class="settings-group">
                     <div class="setting-row">
@@ -1517,7 +1634,6 @@
                     </div>
                 </div>
 
-                <!-- Display -->
                 <div class="settings-group-title">DISPLAY & BRIGHTNESS</div>
                 <div class="settings-group">
                     <div class="setting-row" onclick="toggleWallpaper()">
@@ -1533,7 +1649,6 @@
                     </div>
                 </div>
 
-                 <!-- Privacy -->
                  <div class="settings-group-title">PRIVACY & SECURITY</div>
                  <div class="settings-group">
                      <div class="setting-row">
@@ -1545,7 +1660,6 @@
                      </div>
                  </div>
 
-                <!-- General / Reset -->
                 <div class="settings-group">
                     <div class="setting-row" style="justify-content: center; border-bottom: none;">
                         <span class="danger-text" onclick="returnToLock()">Reset Phone (Lock)</span>
@@ -1557,15 +1671,15 @@
         analytics: {
           title: "Analytics",
           render: () => `
-                    <div class="notes-paper" style="background: white;">
-                        <div class="notes-title" style="font-size: 16px;">Internal App</div>
-                        <p style="text-align: center; margin-top: 50px;">
-                            <i class="fas fa-chart-line" style="font-size: 50px; color: var(--ios-blue);"></i>
-                        </p>
-                        <p style="text-align: center; color: #666;">Real data is hidden for privacy.</p>
-                        <p style="text-align: center; font-size: 12px; color: #999;">Visit dashboard to view stats.</p>
-                    </div>
-                `,
+            <div class="notes-paper" style="background: white;">
+                <div class="notes-title" style="font-size: 16px;">Internal App</div>
+                <p style="text-align: center; margin-top: 50px;">
+                    <i class="fas fa-chart-line" style="font-size: 50px; color: var(--ios-blue);"></i>
+                </p>
+                <p style="text-align: center; color: #666;">Real data is hidden for privacy.</p>
+                <p style="text-align: center; font-size: 12px; color: #999;">Visit dashboard to view stats.</p>
+            </div>
+          `,
         },
       };
 
