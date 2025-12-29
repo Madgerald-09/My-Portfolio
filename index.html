@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Madueke Gerald Chinemerem - Portfolio</title>
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics GA4 Script -->
+    <!-- IMPORTANT: Replace 'G-XXXXXXXXXX' with your actual Measurement ID -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-4KCE5R87TN"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-4KCE5R87TN");
+    </script>
+
+    <style>
+      :root {
+        --frame-width: 375px;
+        --frame-height: 812px;
+        --bezel-color: #1c1c1e;
+        --screen-bg: #000;
+        --text-white: #ffffff;
+        --text-gray: #8e8e93;
+        --ios-blue: #007aff;
+        --ios-red: #ff3b30;
+        --ios-green: #34c759;
+        --ios-orange: #ff9500;
+        --glass-bg: rgba(25, 25, 25, 0.4);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --anim-speed: 0.4s;
+
+        /* Wallpapers */
+        --wallpaper-lock: url("https://picsum.photos/seed/gerald_lock/800/1600.jpg");
+        --wallpaper-home: url("https://picsum.photos/seed/gerald_home/800/1600.jpg");
+      }
+
+      * {
+        box-sizing: border-box;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        overflow: hidden;
+      }
+
+      /* --- Phone Frame --- */
+      .iphone-frame {
+        width: var(--frame-width);
+        height: var(--frame-height);
+        background: var(--screen-bg);
+        border-radius: 45px;
+        box-shadow: 0 0 0 12px var(--bezel-color), 0 0 0 13px #4a4a4a,
+          0 20px 50px rgba(0, 0, 0, 0.5);
+        position: relative;
+        overflow: hidden;
+        color: var(--text-white);
+      }
+
+      .notch {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 160px;
+        height: 30px;
+        background: var(--bezel-color);
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        z-index: 1000;
+      }
+
+      .notch::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 10px;
+        background: #1a1a1a;
+        border-radius: 50%;
+        box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
+      }
+
+      .home-indicator {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 5px;
+        background: var(--text-white);
+        border-radius: 10px;
+        z-index: 1000;
+        opacity: 0.8;
+      }
+
+      .status-bar {
+        position: absolute;
+        top: 5px;
+        left: 30px;
+        right: 30px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 600;
+        z-index: 900;
+        mix-blend-mode: difference;
+        color: white;
+      }
+
+      .status-right {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .screen-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .screen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform var(--anim-speed) cubic-bezier(0.2, 0.8, 0.2, 1),
+          opacity var(--anim-speed);
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+
+      .hidden {
+        pointer-events: none;
+        opacity: 0;
+      }
+      .slide-up-active {
+        transform: translateY(-100%);
+      }
+
+      /* --- Lockscreen --- */
+      #lock-screen {
+        background-image: var(--wallpaper-lock);
+        z-index: 300;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .lock-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(2px);
+      }
+
+      .lock-content {
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+        cursor: grab;
+      }
+
+      .clock-time {
+        font-size: 80px;
+        font-weight: 200;
+        line-height: 1;
+        margin-bottom: 5px;
+      }
+      .clock-date {
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .charging-ui {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      .battery-icon {
+        width: 24px;
+        height: 12px;
+        border: 1px solid white;
+        border-radius: 3px;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .battery-icon::after {
+        content: "";
+        position: absolute;
+        right: -4px;
+        width: 2px;
+        height: 6px;
+        background: white;
+        border-radius: 0 2px 2px 0;
+      }
+      .battery-level {
+        height: 100%;
+        width: 100%;
+        background: var(--ios-green);
+        border-radius: 2px;
+      }
+
+      .branding {
+        margin-top: auto;
+        margin-bottom: 50px;
+        text-align: center;
+        opacity: 0.6;
+        animation: pulse 3s infinite ease-in-out;
+      }
+      .branding h1 {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0;
+      }
+      .branding p {
+        font-size: 12px;
+        font-weight: 300;
+        margin: 5px 0 0 0;
+        letter-spacing: 1px;
+      }
+
+      .swipe-bar-container {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+        z-index: 5;
+      }
+      .swipe-icon {
+        font-size: 24px;
+        opacity: 0.8;
+      }
+      .swipe-text {
+        font-size: 14px;
+        margin-top: 5px;
+        opacity: 0.8;
+        font-weight: 500;
+      }
+
+      .lock-screen-notification {
+        position: absolute;
+        top: 50px;
+        left: 16px;
+        right: 16px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        color: #000;
+        padding: 15px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transform: translateY(-150%);
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 10;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .lock-screen-notification.visible {
+        transform: translateY(0);
+      }
+
+      /* --- Passcode Screen --- */
+      #passcode-screen {
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(15px);
+        z-index: 250;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(100%);
+      }
+      #passcode-screen.active {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+
+      .passcode-text {
+        font-size: 24px;
+        margin-bottom: 40px;
+        font-weight: 400;
+      }
+      .dots-container {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 1px solid white;
+        transition: background 0.2s;
+      }
+      .dot.filled {
+        background: white;
+      }
+
+      .keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px 40px;
+      }
+      .key {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        font-weight: 300;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .key:active {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .passcode-notification {
+        position: absolute;
+        top: 60px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+      }
+      .shake {
+        animation: shake 0.5s;
+      }
+
+      /* --- Home Screen --- */
+      #home-screen {
+        background-image: var(--wallpaper-home);
+        z-index: 200;
+        transform: scale(0.95);
+        opacity: 0;
+        pointer-events: none;
+      }
+      #home-screen.active {
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .app-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px 15px;
+        padding: 60px 20px 100px 20px;
+      }
+
+      .app-icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+      .app-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28px;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.1s;
+      }
+      .app-icon-wrapper:active .app-icon {
+        transform: scale(0.9);
+      }
+      .app-name {
+        font-size: 11px;
+        color: white;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        font-weight: 500;
+      }
+
+      /* Specific Icon Colors */
+      .icon-gallery {
+        background: linear-gradient(135deg, #ff9966, #ff5e62);
+      }
+      .icon-about {
+        background: linear-gradient(135deg, #56ccf2, #2f80ed);
+      }
+      .icon-projects {
+        background: linear-gradient(135deg, #11998e, #38ef7d);
+      }
+      .icon-skills {
+        background: linear-gradient(135deg, #8e2de2, #4a00e0);
+      }
+      .icon-contact {
+        background: linear-gradient(135deg, #fce38a, #f38181);
+      }
+      .icon-settings {
+        background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+      }
+      .icon-analytics {
+        background: linear-gradient(135deg, #f37335, #fdc830);
+      } /* NEW: Analytics Icon */
+
+      .dock {
+        position: absolute;
+        bottom: 20px;
+        left: 15px;
+        right: 15px;
+        height: 90px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        border-radius: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      /* --- Apps Layer --- */
+      #app-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 400;
+        background: #f2f2f7;
+        color: #000;
+        transform: scale(0);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+      #app-layer.open {
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .app-header {
+        height: 90px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-bottom: 1px solid #d1d1d6;
+        position: relative;
+        z-index: 10;
+      }
+      .back-btn {
+        font-size: 16px;
+        color: var(--ios-blue);
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 0;
+      }
+      .app-title {
+        font-size: 18px;
+        font-weight: 600;
+        flex-grow: 1;
+        text-align: center;
+        margin-right: 50px;
+      }
+      .app-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* App Specific Styles */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .gallery-item {
+        aspect-ratio: 1;
+        background: #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .notes-paper {
+        background: #fffcf5;
+        padding: 20px;
+        min-height: 100%;
+        font-family: "Marker Felt", sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+        color: #444;
+      }
+      .notes-title {
+        font-weight: bold;
+        font-size: 22px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      .project-title {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      .project-desc {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+      .project-tags {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .tag {
+        background: #e5e5ea;
+        color: #333;
+        font-size: 10px;
+        padding: 3px 8px;
+        border-radius: 4px;
+      }
+      .project-links {
+        display: flex;
+        gap: 15px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .project-links a {
+        text-decoration: none;
+        color: var(--ios-blue);
+      }
+
+      .skill-item {
+        margin-bottom: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+      }
+      .skill-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .progress-bg {
+        height: 6px;
+        background: #e5e5ea;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: var(--ios-green);
+        border-radius: 3px;
+      }
+
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .contact-item {
+        background: white;
+        padding: 15px;
+        margin-bottom: 1px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #000;
+        transition: background 0.2s;
+      }
+      .contact-item:active {
+        background: #e5e5ea;
+      }
+      .contact-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ios-blue);
+      }
+
+      .settings-group {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 25px;
+      }
+      .setting-row {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e5e5ea;
+        cursor: pointer;
+      }
+      .setting-row:last-child {
+        border-bottom: none;
+      }
+      .setting-label {
+        font-size: 16px;
+      }
+      .setting-action {
+        color: var(--ios-blue);
+        font-size: 15px;
+      }
+      .danger-text {
+        color: var(--ios-red);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        50% {
+          transform: translateX(10px);
+        }
+        75% {
+          transform: translateX(-10px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="iphone-frame">
+      <div class="notch"></div>
+      <div class="status-bar">
+        <div class="time" id="status-time">12:00</div>
+        <div class="status-right">
+          <i class="fas fa-signal"></i>
+          <i class="fas fa-wifi"></i>
+          <div class="battery-icon"><div class="battery-level"></div></div>
+        </div>
+      </div>
+      <div class="home-indicator"></div>
+
+      <div class="screen-container">
+        <!-- 1. Lock Screen -->
+        <div id="lock-screen" class="screen">
+          <div class="lock-overlay"></div>
+          <div class="lock-screen-notification" id="lock-toast">
+            <i class="fas fa-lock" style="font-size: 18px"></i>
+            <div>
+              <div style="font-weight: 600; font-size: 13px">System</div>
+              <div style="font-size: 12px; color: #333">Swipe up to unlock</div>
+            </div>
+          </div>
+
+          <div class="lock-content" id="lock-content-area">
+            <div class="clock-time" id="lock-time">12:00</div>
+            <div class="clock-date" id="lock-date">Monday, January 1</div>
+            <div class="charging-ui">
+              <div class="battery-icon"><div class="battery-level"></div></div>
+              <span>Charging</span>
+            </div>
+            <div class="branding">
+              <h1>Madueke Gerald Chinemerem</h1>
+              <p>Portfolio</p>
+            </div>
+            <div class="swipe-bar-container">
+              <div class="swipe-icon"><i class="fas fa-chevron-up"></i></div>
+              <div class="swipe-text">Swipe up to unlock</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Passcode Screen -->
+        <div id="passcode-screen" class="screen">
+          <div class="passcode-text">Enter Passcode</div>
+          <div class="passcode-notification">PIN: 123456</div>
+          <div class="dots-container" id="passcode-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="keypad">
+            <div class="key" data-num="1">1</div>
+            <div class="key" data-num="2">2</div>
+            <div class="key" data-num="3">3</div>
+            <div class="key" data-num="4">4</div>
+            <div class="key" data-num="5">5</div>
+            <div class="key" data-num="6">6</div>
+            <div class="key" data-num="7">7</div>
+            <div class="key" data-num="8">8</div>
+            <div class="key" data-num="9">9</div>
+            <div class="key" style="background: transparent"></div>
+            <div class="key" data-num="0">0</div>
+            <div class="key" style="background: transparent">
+              <i class="fas fa-backspace" id="passcode-delete"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Home Screen -->
+        <div id="home-screen" class="screen">
+          <div class="app-grid">
+            <div class="app-icon-wrapper" onclick="openApp('gallery')">
+              <div class="app-icon icon-gallery">
+                <i class="fas fa-images"></i>
+              </div>
+              <div class="app-name">Gallery</div>
+            </div>
+            <div class="app-icon-wrapper" onclick="openApp('about')">
+              <div class="app-icon icon-about"><i class="fas fa-user"></i></div>
+              <div class="app-name">About Me</div>
+            </div>
+            <div class="app-icon-wrapper" onclick="openApp('projects')">
+              <div class="app-icon icon-projects">
+                <i class="fas fa-code"></i>
+              </div>
+              <div class="app-name">Projects</div>
+            </div>
+            <div class="app-icon-wrapper" onclick="openApp('skills')">
+              <div class="app-icon icon-skills">
+                <i class="fas fa-layer-group"></i>
+              </div>
+              <div class="app-name">Skills</div>
+            </div>
+            <div class="app-icon-wrapper" onclick="openApp('contact')">
+              <div class="app-icon icon-contact">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="app-name">Contact</div>
+            </div>
+            <!-- NEW: Analytics Icon -->
+            <div class="app-icon-wrapper" onclick="openApp('analytics')">
+              <div class="app-icon icon-analytics">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="app-name">Analytics</div>
+            </div>
+          </div>
+
+          <div class="dock">
+            <div class="app-icon-wrapper" onclick="openApp('settings')">
+              <div class="app-icon icon-settings">
+                <i class="fas fa-cog"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. App Layer -->
+        <div id="app-layer">
+          <div class="app-header">
+            <button class="back-btn" onclick="closeApp()">
+              <i class="fas fa-chevron-left"></i> Back
+            </button>
+            <div class="app-title" id="active-app-title">App Name</div>
+          </div>
+          <div class="app-content" id="app-content-area"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* --- ANALYTICS WRAPPER --- */
+      // Helper function to track "Screens" (Virtual Pageviews)
+      function trackScreen(screenName) {
+        if (typeof gtag === "function") {
+          gtag("config", "G-XXXXXXXXXX", {
+            page_path: screenName,
+            send_page_view: true,
+          });
+        }
+      }
+
+      // Helper function to track "Events" (Interactions)
+      function trackEvent(category, action, label = null) {
+        if (typeof gtag === "function") {
+          gtag("event", action, {
+            event_category: category,
+            event_label: label,
+          });
+        }
+      }
+
+      /* --- State Management --- */
+      const state = {
+        locked: true,
+        screen: "lock",
+        passcode: "",
+        activeApp: null,
+      };
+
+      const correctPasscode = "123456";
+
+      const screens = {
+        lock: document.getElementById("lock-screen"),
+        passcode: document.getElementById("passcode-screen"),
+        home: document.getElementById("home-screen"),
+        app: document.getElementById("app-layer"),
+      };
+
+      const els = {
+        lockTime: document.getElementById("lock-time"),
+        lockDate: document.getElementById("lock-date"),
+        statusTime: document.getElementById("status-time"),
+        lockToast: document.getElementById("lock-toast"),
+        passcodeDots: document.getElementById("passcode-dots").children,
+        appTitle: document.getElementById("active-app-title"),
+        appContent: document.getElementById("app-content-area"),
+        lockContent: document.getElementById("lock-content-area"),
+      };
+
+      // Initial Page Load View
+      window.addEventListener("load", () => {
+        trackScreen("/lockscreen");
+      });
+
+      /* --- Clock & Date --- */
+      function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const timeStr = `${hours}:${minutes}`;
+        els.lockTime.innerText = timeStr;
+        els.statusTime.innerText = timeStr;
+        const options = { weekday: "long", month: "long", day: "numeric" };
+        els.lockDate.innerText = now.toLocaleDateString("en-US", options);
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      /* --- Lockscreen Swipe Logic --- */
+      let startY = 0;
+      let isDragging = false;
+
+      function handleStart(y) {
+        if (state.screen !== "lock") return;
+        startY = y;
+        isDragging = true;
+      }
+
+      function handleMove(y) {
+        if (!isDragging || state.screen !== "lock") return;
+        const deltaY = startY - y;
+        if (deltaY > 0) {
+          screens.lock.style.transform = `translateY(-${deltaY}px)`;
+          els.lockContent.style.opacity = Math.max(0, 1 - deltaY / 400);
+        }
+      }
+
+      function handleEnd(y) {
+        if (!isDragging || state.screen !== "lock") return;
+        const deltaY = startY - y;
+        isDragging = false;
+
+        if (deltaY > 150) {
+          trackEvent("Interaction", "Swipe Unlock");
+          transitionToPasscode();
+        } else {
+          screens.lock.style.transform = "";
+          els.lockContent.style.opacity = "";
+        }
+      }
+
+      document.addEventListener("touchstart", (e) =>
+        handleStart(e.touches[0].clientY)
+      );
+      document.addEventListener("touchmove", (e) =>
+        handleMove(e.touches[0].clientY)
+      );
+      document.addEventListener("touchend", (e) =>
+        handleEnd(e.changedTouches[0].clientY)
+      );
+      document.addEventListener("mousedown", (e) => handleStart(e.clientY));
+      document.addEventListener("mousemove", (e) => handleMove(e.clientY));
+      document.addEventListener("mouseup", (e) => handleEnd(e.clientY));
+
+      /* --- Lockscreen Notification --- */
+      function toggleToast() {
+        if (state.screen !== "lock") return;
+        els.lockToast.classList.add("visible");
+        setTimeout(() => els.lockToast.classList.remove("visible"), 3000);
+      }
+      setTimeout(toggleToast, 1000);
+      setInterval(() => {
+        if (state.screen === "lock") toggleToast();
+      }, 8000);
+
+      /* --- Screen Transitions --- */
+      function transitionToPasscode() {
+        screens.lock.style.transition = "transform 0.5s ease-in, opacity 0.5s";
+        screens.lock.style.transform = "translateY(-100%)";
+        screens.lock.style.opacity = "0";
+        setTimeout(() => {
+          state.screen = "passcode";
+          screens.passcode.classList.add("active");
+          trackScreen("/passcode");
+        }, 200);
+      }
+
+      function transitionToHome() {
+        screens.passcode.classList.remove("active");
+        screens.lock.style.transition = "none";
+        screens.lock.style.transform = "translateY(100%)";
+        setTimeout(() => {
+          state.screen = "home";
+          state.locked = false;
+          screens.home.classList.add("active");
+          trackScreen("/home");
+        }, 300);
+      }
+
+      function returnToLock() {
+        closeApp(false);
+        screens.home.classList.remove("active");
+        screens.lock.style.transition = "transform 0.5s ease-out";
+        screens.lock.style.transform = "translateY(0)";
+        screens.lock.style.opacity = "1";
+        state.screen = "lock";
+        state.locked = true;
+        resetPasscode();
+        trackScreen("/lockscreen");
+      }
+
+      /* --- Passcode Logic --- */
+      document.querySelectorAll(".key").forEach((key) => {
+        key.addEventListener("click", (e) => {
+          const num = e.currentTarget.dataset.num;
+          if (num) enterPasscode(num);
+        });
+      });
+
+      document
+        .getElementById("passcode-delete")
+        .addEventListener("click", () => {
+          if (state.passcode.length > 0) {
+            state.passcode = state.passcode.slice(0, -1);
+            updateDots();
+          }
+        });
+
+      function enterPasscode(num) {
+        if (state.passcode.length < 6) {
+          state.passcode += num;
+          updateDots();
+          if (state.passcode.length === 6) checkPasscode();
+        }
+      }
+
+      function updateDots() {
+        Array.from(els.passcodeDots).forEach((dot, index) => {
+          if (index < state.passcode.length) dot.classList.add("filled");
+          else dot.classList.remove("filled");
+        });
+      }
+
+      function checkPasscode() {
+        if (state.passcode === correctPasscode) {
+          trackEvent("Action", "Unlock Success");
+          setTimeout(transitionToHome, 200);
+        } else {
+          trackEvent("Action", "Unlock Failed");
+          document.getElementById("passcode-screen").classList.add("shake");
+          Array.from(els.passcodeDots).forEach(
+            (d) => (d.style.background = "var(--ios-red)")
+          );
+          setTimeout(() => {
+            resetPasscode();
+            document
+              .getElementById("passcode-screen")
+              .classList.remove("shake");
+            Array.from(els.passcodeDots).forEach(
+              (d) => (d.style.background = "")
+            );
+          }, 500);
+        }
+      }
+
+      function resetPasscode() {
+        state.passcode = "";
+        updateDots();
+      }
+
+      /* --- App System --- */
+      const appData = {
+        gallery: {
+          title: "Certificates",
+          render: () => `
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert1/400/400.jpg"></div>
+                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert2/400/400.jpg"></div>
+                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert3/400/400.jpg"></div>
+                        <div class="gallery-item"><img src="https://picsum.photos/seed/cert4/400/400.jpg"></div>
+                    </div>
+                `,
+          postRender: () => {
+            document
+              .querySelectorAll(".gallery-item")
+              .forEach((item, index) => {
+                item.addEventListener("click", () => {
+                  trackEvent(
+                    "Engagement",
+                    "View Certificate",
+                    `Image ${index + 1}`
+                  );
+                });
+              });
+          },
+        },
+        about: {
+          title: "About Me",
+          render: () => `
+                    <div class="notes-paper">
+                        <div class="notes-title">About Me</div>
+                        <p>Hi, I am Madueke Gerald Chinemerem.</p>
+                        <p>I am a passionate fullstack web developer and UI/UX enthusiast. I love building interactive web experiences that are not only functional but also visually stunning.</p>
+                        <br>
+                        <p><strong>Education:</strong><br>University of Nigeria Nsukka<br>Mechatronics Engineering</p>
+                        <br>
+                        <p><strong>Interests:</strong><br>Coding, Design, Music, Tech Innovation, Gaming, Anime.</p>
+                    </div>
+                `,
+        },
+        projects: {
+          title: "Projects",
+          render: () => `
+                    <div class="project-card">
+                        <div class="project-title">E-Commerce Platform</div>
+                        <div class="project-desc">A full-stack shopping platform with payment integration.</div>
+                        <div class="project-tags">
+                            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Stripe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="ga-link" data-label="E-Commerce GitHub"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="ga-link" data-label="E-Commerce Live"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title">Task Manager App</div>
+                        <div class="project-desc">Productivity app with drag-and-drop features.</div>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span><span class="tag">Firebase</span>
+                        </div>
+                         <div class="project-links">
+                            <a href="#" class="ga-link" data-label="Task Manager GitHub"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                `,
+          postRender: () => {
+            document.querySelectorAll(".ga-link").forEach((link) => {
+              link.addEventListener("click", (e) => {
+                trackEvent(
+                  "Outbound",
+                  "Click Link",
+                  e.target.closest("a").dataset.label
+                );
+              });
+            });
+          },
+        },
+        skills: {
+          title: "Skills",
+          render: () => `
+                    <div class="skill-item">
+                        <div class="skill-header"><span>HTML/CSS</span><span>95%</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width:95%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>JavaScript</span><span>90%</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width:90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>React/Vue</span><span>85%</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width:85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>UI Design</span><span>80%</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width:80%"></div></div>
+                    </div>
+                `,
+        },
+        contact: {
+          title: "Contact",
+          render: () => `
+                    <ul class="contact-list">
+                        <li class="contact-item ga-contact" data-type="Email">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <span>gerald.madueke@example.com</span>
+                        </li>
+                        <li class="contact-item ga-contact" data-type="LinkedIn">
+                            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                            <span>linkedin.com/in/gerald</span>
+                        </li>
+                        <li class="contact-item ga-contact" data-type="GitHub">
+                            <div class="contact-icon"><i class="fab fa-github"></i></div>
+                            <span>github.com/geralddev</span>
+                        </li>
+                        <li class="contact-item ga-contact" data-type="WhatsApp">
+                            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                            <span>+1 234 567 890</span>
+                        </li>
+                    </ul>
+                `,
+          postRender: () => {
+            document.querySelectorAll(".ga-contact").forEach((item) => {
+              item.addEventListener("click", () => {
+                trackEvent("Contact", "Click", item.dataset.type);
+              });
+            });
+          },
+        },
+        settings: {
+          title: "Settings",
+          render: () => `
+                    <div class="settings-group">
+                        <div class="setting-row" onclick="toggleWallpaper()">
+                            <span class="setting-label">Change Wallpaper</span>
+                            <i class="fas fa-chevron-right" style="color:#ccc"></i>
+                        </div>
+                        <div class="setting-row">
+                            <span class="setting-label">Airplane Mode</span>
+                            <i class="fas fa-toggle-off" style="font-size: 30px; color: #ccc"></i>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <div class="setting-row" style="justify-content: center">
+                            <span class="danger-text" onclick="returnToLock()">Reset Phone (Lock)</span>
+                        </div>
+                    </div>
+                `,
+        },
+        analytics: {
+          title: "Analytics",
+          render: () => `
+                    <div class="notes-paper" style="background: white;">
+                        <div class="notes-title" style="font-size: 16px;">Internal App</div>
+                        <p style="text-align: center; margin-top: 50px;">
+                            <i class="fas fa-chart-line" style="font-size: 50px; color: var(--ios-blue);"></i>
+                        </p>
+                        <p style="text-align: center; color: #666;">Real data is hidden for privacy.</p>
+                        <p style="text-align: center; font-size: 12px; color: #999;">Visit the dashboard to view stats.</p>
+                    </div>
+                `,
+        },
+      };
+
+      function openApp(appId) {
+        const app = appData[appId];
+        if (!app) return;
+
+        state.activeApp = appId;
+        state.screen = "app";
+        trackScreen(`/${appId}`);
+
+        els.appTitle.innerText = app.title;
+        els.appContent.innerHTML = app.render();
+
+        if (app.postRender) app.postRender();
+        screens.app.classList.add("open");
+      }
+
+      function closeApp() {
+        if (state.screen !== "app") return;
+        screens.app.classList.remove("open");
+        state.activeApp = null;
+        state.screen = "home";
+        trackScreen("/home");
+      }
+
+      /* --- Settings Functions --- */
+      let wallpaperIndex = 0;
+      const wallpapers = [
+        "var(--wallpaper-home)",
+        'url("https://picsum.photos/seed/theme2/800/1600.jpg")',
+        'url("https://picsum.photos/seed/theme3/800/1600.jpg")',
+        'url("https://picsum.photos/seed/theme4/800/1600.jpg")',
+      ];
+
+      function toggleWallpaper() {
+        wallpaperIndex = (wallpaperIndex + 1) % wallpapers.length;
+        document.getElementById("home-screen").style.backgroundImage =
+          wallpapers[wallpaperIndex];
+      }
+    </script>
+  </body>
+</html>
